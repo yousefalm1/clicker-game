@@ -21,10 +21,6 @@ const Home = () => {
     }
   };
 
-  // const handleLevelClick = () => {
-  //   setMultiplier();
-  // };
-
   return (
     <div className="mx-auto">
       <div>
