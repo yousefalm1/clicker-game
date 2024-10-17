@@ -4,13 +4,21 @@ import { useState } from 'react';
 
 const Home = () => {
   const [count, setCount] = useState(0);
+  const [currency, setCurrency] = useState(0);
 
   const handleClick = () => {
     setCount(count + 1);
+    if (count === 5) {
+      setCurrency(10);
+    }
   };
 
   return (
     <div className="mx-auto">
+      <div className="flex justify-end ">
+        <h2 className=" text-7xl me-8 mt-5">${currency}</h2>
+      </div>
+
       <div className=" flex justify-center mt-56 ">
         <h1 className=" text-7xl ">{count}</h1>
       </div>
