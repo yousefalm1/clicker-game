@@ -1,7 +1,14 @@
-const Level = ({ levels, currentCurrency, setCurrentCurrency }) => {
+const Level = ({
+  levels,
+  currentCurrency,
+  setCurrentCurrency,
+  currentMultiplier,
+  setMultiplier,
+}) => {
   const handleBuyUpgradeClick = (level) => {
     if (currentCurrency >= level.cost) {
       setCurrentCurrency(currentCurrency - level.cost);
+      setMultiplier((c) => c * level.multiplier);
     }
   };
 

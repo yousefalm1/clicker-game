@@ -14,40 +14,52 @@ const Home = () => {
   const [currentCurrency, setCurrentCurrency] = useState(0);
   const [isClicked, setIsClicked] = useState(false);
 
-  const [multiplier, setMultiplier] = useState(0);
+  const [currentMultiplier, setMultiplier] = useState(1);
+
   const handleMouseDown = () => {
     setIsClicked(true);
   };
 
   const handleMouseUp = () => {
     setIsClicked(false);
-    handleClick(); // This will increment the count and handle the rewards
+    handleClick();
   };
+
   const handleClick = () => {
-    setCount(count + 1);
+    setCount((count) => {
+      const newCount = count + currentMultiplier;
 
-    const reward = rewards.find((reward) => reward.count === count);
-    if (reward) {
-      setCurrentCurrency(reward.reward + currentCurrency);
-    }
+      // Check for rewards using newCount
+      const reward = rewards.find((reward) => reward.count === newCount);
+      if (reward) {
+        setCurrentCurrency(
+          (currentCurrency) => currentCurrency + reward.reward
+        );
+      }
+      return newCount;
+    });
   };
-
   return (
     <div className="mx-auto">
-      <NavBarContainer currentCurrency={currentCurrency} />
+      <NavBarContainer
+        currentCurrency={currentCurrency}
+        currentMultiplier={currentMultiplier}
+      />
 
       <UpgradeShopContainer
         setCurrentCurrency={setCurrentCurrency}
         currentCurrency={currentCurrency}
+        setMultiplier={setMultiplier}
+        currentMultiplier={currentMultiplier}
       />
 
-      <div className="flex justify-center">
+      <div className="flex justify-center cursor-pointer">
         <GoldCoinIcon
           width={500}
           height={500}
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
-          className={`cursor-pointer transition-transform duration-100 ease-in-out -mt-[250px] 
+          className={`transition-transform duration-100 ease-in-out -mt-[250px] 
           ${isClicked ? 'scale-95 brightness-90' : 'scale-100'}`}
         />
         {/* <button
