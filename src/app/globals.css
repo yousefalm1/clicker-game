@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+* {
+  user-select: none;
+  user-drag: none;
+  app-region: no-drag;
+}
 
 :root {
   --background: #ffffff;

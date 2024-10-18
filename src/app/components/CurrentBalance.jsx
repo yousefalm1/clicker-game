@@ -1,7 +1,10 @@
-const CurrentBalance = ({ currency }) => {
+import MyIcon from '../assets/card.svg';
+
+const CurrentBalance = ({ currentCurrency }) => {
   return (
-    <div className="flex justify-end ">
-      <h2 className=" text-7xl me-8 mt-5">${currency}</h2>
+    <div className="flex items-center space-x-2">
+      <MyIcon width={60} height={60} />
+      <h2 className="text-5xl font-bold text-slate-300">{currentCurrency}</h2>
     </div>
   );
 };

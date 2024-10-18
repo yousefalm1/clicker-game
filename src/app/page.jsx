@@ -1,44 +1,72 @@
 'use client';
 
 import { useState } from 'react';
+import TreeIcon from './assets/tree.svg';
+import GoldCoinIcon from './assets/gold-coin.svg';
 
 import rewards from './data/rewards';
-import UpgradeShop from './components/UpgradeShopContainer';
+import UpgradeShopContainer from './components/UpgradeShopContainer';
 import CurrentBalance from './components/CurrentBalance';
+import { NavBarContainer } from './components/NavBarContainer';
 
 const Home = () => {
   const [count, setCount] = useState(0);
-  const [currentCurrency, setCurrency] = useState(0);
+  const [currentCurrency, setCurrentCurrency] = useState(0);
+  const [isClicked, setIsClicked] = useState(false);
 
-  const [level, setLevel] = useState(0);
+  const [currentMultiplier, setMultiplier] = useState(1);
 
-  const handleClick = () => {
-    setCount(count + 1);
-
-    const reward = rewards.find((reward) => reward.count === count);
-    if (reward) {
-      setCurrency(reward.reward + currentCurrency);
-    }
+  const handleMouseDown = () => {
+    setIsClicked(true);
   };
 
-  const handleLevel = () => {};
+  const handleMouseUp = () => {
+    setIsClicked(false);
+    handleClick();
+  };
 
+  const handleClick = () => {
+    setCount((count) => {
+      const newCount = count + currentMultiplier;
+
+      // Check for rewards using newCount
+      const reward = rewards.find((reward) => reward.count === newCount);
+      if (reward) {
+        setCurrentCurrency(
+          (currentCurrency) => currentCurrency + reward.reward
+        );
+      }
+      return newCount;
+    });
+  };
   return (
     <div className="mx-auto">
-      <CurrentBalance currency={currentCurrency} />
-      <UpgradeShop />
+      <NavBarContainer
+        currentCurrency={currentCurrency}
+        currentMultiplier={currentMultiplier}
+      />
 
-      <div className=" flex justify-center mt-56 ">
-        <h1 className=" text-7xl ">{count}</h1>
+      <UpgradeShopContainer
+        setCurrentCurrency={setCurrentCurrency}
+        currentCurrency={currentCurrency}
+        setMultiplier={setMultiplier}
+        currentMultiplier={currentMultiplier}
+      />
+
+      <div className="flex justify-center cursor-pointer">
+        <GoldCoinIcon
+          width={500}
+          onClick={handleClick}
+          height={500}
+          onMouseDown={() => handleMouseDown}
+          onMouseUp={() => handleMouseUp}
+          className={`transition-transform duration-100 ease-in-out -mt-[250px] 
+          ${isClicked ? 'scale-95 brightness-90' : 'scale-100'}`}
+        />
       </div>
 
-      <div className="flex justify-center">
-        <button
-          className="py-5 px-8 rounded-full bg-white my-4 text-black font-bold hover:bg-slate-200"
-          onClick={handleClick}
-        >
-          Click me
-        </button>
+      <div className=" flex justify-center mt-10  ">
+        <h1 className=" text-7xl ">{count}</h1>
       </div>
     </div>
   );
