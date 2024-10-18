@@ -1,4 +1,4 @@
-const Level = ({
+const UpgradeStore = ({
   levels,
   currentCurrency,
   setCurrentCurrency,
@@ -36,4 +36,4 @@ const Level = ({
   );
 };
 
-export default Level;
+export default UpgradeStore;
