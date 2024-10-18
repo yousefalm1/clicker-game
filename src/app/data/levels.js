@@ -1,5 +1,3 @@
-// levels.js
-
 const levels = [
   {
     id: 1,
@@ -35,6 +33,27 @@ const levels = [
     description: 'Boost your click power to 32x!',
     cost: 10000,
     multiplier: 32,
+  },
+  {
+    id: 6,
+    name: 'Legendary Clicker',
+    description: 'Boost your click power to 64x!',
+    cost: 50000,
+    multiplier: 64,
+  },
+  {
+    id: 7,
+    name: 'Mythical Clicker',
+    description: 'Boost your click power to 128x!',
+    cost: 100000,
+    multiplier: 128,
+  },
+  {
+    id: 8,
+    name: 'Godly Clicker',
+    description: 'Boost your click power to 256x!',
+    cost: 500000,
+    multiplier: 256,
   },
 ];
 

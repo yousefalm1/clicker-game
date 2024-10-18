@@ -12,7 +12,7 @@ export const ClickerIcon = ({ handleClick }) => {
     setIsClicked(false);
   };
   return (
-    <div className="flex justify-center cursor-pointer">
+    <div className="flex justify-center cursor-pointer mt-[-300px]">
       <GoldCoinIcon
         width={500}
         onClick={handleClick}

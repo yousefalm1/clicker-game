@@ -1,13 +1,11 @@
-import { ReactComponent as BoxerIcon } from '../assets/svg/Boxer.svg';
-import { ReactComponent as CardIcon } from '../assets/svg/currencyCoin.svg';
-import { ReactComponent as CookieIcon } from '../assets/svg/Cookie.svg';
-import { ReactComponent as DiamondIcon } from '../assets/svg/diamond.svg';
-import { ReactComponent as GoldCoinIcon } from '../assets/svg/gold-coin.svg';
-import { ReactComponent as MonsterIcon } from '../assets/svg/Monster.svg';
-import { ReactComponent as ReactIcon } from '../assets/svg/React.svg';
-import { ReactComponent as TreasureChestIcon } from '../assets/svg/TreasureChest.svg';
-import { ReactComponent as TreeIcon } from '../assets/svg/tree.svg';
-import { ReactComponent as ZombieIcon } from '../assets/svg/Zombie.svg';
+import BoxerIcon from '../assets/svg/Boxer.svg';
+import CookieIcon from '../assets/svg/Cookie.svg';
+import DiamondIcon from '../assets/svg/diamond.svg';
+import MonsterIcon from '../assets/svg/Monster.svg';
+import ReactIcon from '../assets/svg/React.svg';
+import TreasureChestIcon from '../assets/svg/TreasureChest.svg';
+import TreeIcon from '../assets/svg/tree.svg';
+import ZombieIcon from '../assets/svg/Zombie.svg';
 
 const cosmeticUpgrades = [
   {
@@ -16,13 +14,6 @@ const cosmeticUpgrades = [
     description: 'Punch your way to success!',
     cost: 500,
     IconComponent: BoxerIcon,
-  },
-  {
-    id: 'clicker_card',
-    name: 'Card Clicker',
-    description: 'Shuffle and deal with every click.',
-    cost: 300,
-    IconComponent: CardIcon,
   },
   {
     id: 'clicker_cookie',
@@ -37,13 +28,6 @@ const cosmeticUpgrades = [
     description: 'Shine bright with each click.',
     cost: 1000,
     IconComponent: DiamondIcon,
-  },
-  {
-    id: 'clicker_gold_coin',
-    name: 'Gold Coin Clicker',
-    description: 'Collect gold with every touch.',
-    cost: 600,
-    IconComponent: GoldCoinIcon,
   },
   {
     id: 'clicker_monster',

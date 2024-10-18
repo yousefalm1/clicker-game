@@ -1,10 +1,23 @@
-import cosmeticUpgrades from '../data/cosmeticClicker';
-import Boxer from '../assets/svg/Boxer.svg';
 const CosmeticStore = ({
   setCurrentCurrency,
+  cosmeticUpgrades,
   currentCurrency,
-  onCosmeticUpgradeClick,
+  setCurrentClickerStorage,
+  currentClickerStorage,
 }) => {
+  const handleBuyCosmeticClick = (cosmeticUpgrade) => {
+    const alreadyInStorage = currentClickerStorage.some(
+      (clicker) => clicker.id == cosmeticUpgrade.id
+    );
+    if (!alreadyInStorage && currentCurrency >= cosmeticUpgrade.cost) {
+      setCurrentClickerStorage((c) => {
+        setCurrentCurrency(currentCurrency - cosmeticUpgrade.cost);
+        const updateStorage = [...c, cosmeticUpgrade];
+        return updateStorage;
+      });
+    }
+  };
+
   return (
     <>
       {cosmeticUpgrades.map((cosmeticUpgrade) => {
@@ -12,12 +25,15 @@ const CosmeticStore = ({
         return (
           <div
             key={cosmeticUpgrade.id}
-            className="ms-5 mt-5 flex items-center rounded-3xl text-black px-4"
+            className="ms-5 mt-5 mx-auto flex items-center rounded-3xl text-black px-4"
           >
-            {/* Render the SVG icon */}
-            <Boxer className="w-10 h-10 mr-4" />
+            {Icon ? (
+              <Icon className="icon-class w-8 h-8" />
+            ) : (
+              <div className="w-8 h-8 bg-gray-200" />
+            )}
 
-            <div className="flex-1">
+            <div className="flex-1 ml-4">
               <p className="text-lg text-zinc-300 font-semibold">
                 {cosmeticUpgrade.name}
               </p>
@@ -25,15 +41,15 @@ const CosmeticStore = ({
                 {cosmeticUpgrade.description}
               </p>
             </div>
-
             <button
-              onClick={() => onCosmeticUpgradeClick(cosmeticUpgrade)}
+              // onClick={() => onCosmeticUpgradeClick(cosmeticUpgrade)}
               className={`${
                 cosmeticUpgrade.cost <= currentCurrency
                   ? 'bg-blue-500 hover:bg-blue-600 text-white cursor-pointer'
                   : 'bg-blue-500/[.2] text-white/[.2] cursor-not-allowed'
               } font-bold py-2 px-4 rounded-full w-40 text-center ms-4`}
               disabled={cosmeticUpgrade.cost > currentCurrency}
+              onClick={() => handleBuyCosmeticClick(cosmeticUpgrade)}
             >
               ${cosmeticUpgrade.cost}
             </button>
