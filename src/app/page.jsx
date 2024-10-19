@@ -31,7 +31,7 @@ const Home = () => {
     },
   ]);
 
-  // WOULD LIKE TO CREDIT @mshll
+  // WOULD LIKE TO CREDIT @mshll for help with active Clicker , the confetti and the product store alignment
   const [activeClicker, setActiveClicker] = useState(currentClickerStorage[0]);
 
   const [currentGoalCount, setCurrentGoalCount] = useState(rewards[0].count);
