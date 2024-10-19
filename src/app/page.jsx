@@ -25,7 +25,7 @@ const Home = () => {
 
   const [showModal, setShowModal] = useState(false);
 
-  const handleCloseModal = () => setShowModal(false); // Function to close modal
+  const handleCloseModal = () => setShowModal(false);
 
   // Helper Function To Calculate The Percentage
   const calculateProgress = (count, nextGoal) => {
