@@ -6,17 +6,15 @@ import rewards from './data/rewards';
 import GoldCoinIcon from './assets/svg/gold-coin.svg';
 
 import UpgradeShopContainer from './components/UpgradeShopContainer';
-import CurrentBalance from './components/CurrentBalance';
 import { NavBarContainer } from './components/NavBarContainer';
 import { ClickerIcon } from './components/ClickerIcon';
-import ClickerStorageContainer from './components/ClickerStorageContainer';
 import ClickCounter from './components/ClickCounter';
 import Modal from './components/Modal';
 import ProgressBar from './components/ProgressBar';
 
 const Home = () => {
   const [count, setCount] = useState(0);
-  const [currentCurrency, setCurrentCurrency] = useState(1500);
+  const [currentCurrency, setCurrentCurrency] = useState(0);
 
   const [currentMultiplier, setMultiplier] = useState(1);
 
@@ -92,8 +90,6 @@ const Home = () => {
         clickers={currentClickerStorage}
         handleActiveClicker={handleActiveClicker}
       />
-
-      {/* <ClickerStorageContainer clickers={currentClickerStorage} /> */}
 
       <UpgradeShopContainer
         setCurrentCurrency={setCurrentCurrency}

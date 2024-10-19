@@ -21,11 +21,14 @@ const CosmeticStore = ({
   return (
     <>
       {cosmeticUpgrades.map((cosmeticUpgrade) => {
+        const alreadyInStorage = currentClickerStorage.some(
+          (clicker) => clicker.id == cosmeticUpgrade.id
+        );
         const Icon = cosmeticUpgrade.IconComponent;
         return (
           <div
             key={cosmeticUpgrade.id}
-            className="mx-6 mt-5 - flex  justify-between w-full rounded-3xl text-black px-4 "
+            className="mx-6 mt-5 flex  justify-between w-full rounded-3xl text-black px-4 "
           >
             {Icon ? (
               <Icon className="icon-class w-8 h-8" />
@@ -42,16 +45,19 @@ const CosmeticStore = ({
               </p>
             </div>
             <button
-              // onClick={() => onCosmeticUpgradeClick(cosmeticUpgrade)}
-              className={`${
-                cosmeticUpgrade.cost <= currentCurrency
-                  ? 'bg-blue-500 hover:bg-blue-600 text-white cursor-pointer'
-                  : 'bg-blue-500/[.2] text-white/[.2] cursor-not-allowed'
-              } font-bold py-2 px-4 rounded-full w-40 text-center ms-4`}
-              disabled={cosmeticUpgrade.cost > currentCurrency}
+              className={`
+                ${
+                  alreadyInStorage
+                    ? 'bg-green-500 hover:bg-green-600 text-white '
+                    : cosmeticUpgrade.cost <= currentCurrency
+                    ? 'bg-blue-500 hover:bg-blue-600 text-white '
+                    : 'bg-blue-500/[.2] text-white/[.2] '
+                } font-bold py-2 px-4 rounded-full w-40 text-center ms-4`}
               onClick={() => handleBuyCosmeticClick(cosmeticUpgrade)}
             >
-              ${cosmeticUpgrade.cost}
+              {alreadyInStorage
+                ? 'Owned'
+                : `${cosmeticUpgrade.cost.toLocaleString()}`}
             </button>
           </div>
         );
