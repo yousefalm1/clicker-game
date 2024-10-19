@@ -13,11 +13,14 @@ import Modal from './components/Modal';
 import ProgressBar from './components/ProgressBar';
 
 const Home = () => {
+  // MOST IMPORTANT STATE
   const [count, setCount] = useState(0);
+
   const [currentCurrency, setCurrentCurrency] = useState(0);
 
   const [currentMultiplier, setMultiplier] = useState(1);
 
+  // CLICKER STORAGE
   const [currentClickerStorage, setCurrentClickerStorage] = useState([
     {
       id: 'default_clicker',
@@ -28,6 +31,7 @@ const Home = () => {
     },
   ]);
 
+  // WOULD LIKE TO CREDIT @mshll
   const [activeClicker, setActiveClicker] = useState(currentClickerStorage[0]);
 
   const [currentGoalCount, setCurrentGoalCount] = useState(rewards[0].count);
