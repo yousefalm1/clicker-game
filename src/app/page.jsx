@@ -10,6 +10,8 @@ import { NavBarContainer } from './components/NavBarContainer';
 import { ClickerIcon } from './components/ClickerIcon';
 import ClickerStorageContainer from './components/ClickerStorageContainer';
 import ClickCounter from './components/ClickCounter';
+import Modal from './components/Modal';
+import ProgressBar from './components/ProgressBar';
 
 const Home = () => {
   const [count, setCount] = useState(0);
@@ -18,41 +20,60 @@ const Home = () => {
   const [currentMultiplier, setMultiplier] = useState(1);
   const [currentClickerStorage, setCurrentClickerStorage] = useState([]);
 
-  const [currentGoalCount, setCurrentCount] = useState(rewards[0].count);
+  const [currentGoalCount, setCurrentGoalCount] = useState(rewards[0].count);
+  const [currentRewardDescription, setCurrentRewardDescription] = useState('');
+
+  const [showModal, setShowModal] = useState(false);
+
+  const handleCloseModal = () => setShowModal(false); // Function to close modal
 
   // Helper Function To Calculate The Percentage
-  const calculateProgress = (count, newGoal) => {
-    newGoal ? Math.min((count / newGoal) * 100, 100) : 100;
+  const calculateProgress = (count, nextGoal) => {
+    return nextGoal ? Math.min((count / nextGoal) * 100, 100) : 100;
   };
 
-  //
-  const getNextGoal = (currentCount) =>
-    rewards.find((reward) => reward.count > currentCount);
+  // Find the next goal
+  const nextGoal = rewards.find((reward) => reward.count > count);
 
-  // Calculate Progress Bar
+  const progress = calculateProgress(count, nextGoal && nextGoal.count);
 
   const handleClick = () => {
     setCount((count) => {
       const newCount = count + currentMultiplier;
-
       let newCurrency = currentCurrency + currentMultiplier;
 
+      // Check if the user reaches a reward
       const reward = rewards.find((reward) => reward.count === newCount);
       if (reward) {
         newCurrency = newCurrency + reward.reward;
+        setCurrentRewardDescription(reward.description);
+        setShowModal(true);
+      }
+      setCurrentCurrency(newCurrency);
+
+      // Update the next goal if needed
+      const updatedGoal = rewards.find((reward) => reward.count > newCount);
+      if (updatedGoal) {
+        setCurrentGoalCount(updatedGoal.count);
       }
 
-      setCurrentCurrency(newCurrency);
       return newCount;
     });
   };
 
   return (
     <div className="mx-auto">
+      <Modal
+        showModal={showModal}
+        currentRewardDescription={currentRewardDescription}
+        handleCloseModal={handleCloseModal}
+      />
+
       <NavBarContainer
         currentCurrency={currentCurrency}
         currentMultiplier={currentMultiplier}
       />
+
       <ClickerStorageContainer clickers={currentClickerStorage} />
 
       <UpgradeShopContainer
@@ -68,12 +89,7 @@ const Home = () => {
 
       <ClickCounter count={count} />
 
-      <div class="flex justify-center">
-        <div class="w-full max-w-md bg-gray-200 rounded-full h-6">
-          <div class="bg-blue-600 h-6 rounded-full"></div>
-          <h1 className=" text-center text-4xl">{currentGoalCount}</h1>
-        </div>
-      </div>
+      <ProgressBar progress={progress} nextGoal={nextGoal} count={count} />
     </div>
   );
 };
