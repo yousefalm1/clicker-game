@@ -3,7 +3,6 @@
 import { useState } from 'react';
 
 import rewards from './data/rewards';
-// import cosmeticUpgrades from '../data/cosmeticClicker';
 import GoldCoinIcon from './assets/svg/gold-coin.svg';
 
 import UpgradeShopContainer from './components/UpgradeShopContainer';
@@ -17,9 +16,7 @@ import ProgressBar from './components/ProgressBar';
 
 const Home = () => {
   const [count, setCount] = useState(0);
-  const [currentCurrency, setCurrentCurrency] = useState(500);
-
-  const [activeClicker, setActiveClicker] = useState();
+  const [currentCurrency, setCurrentCurrency] = useState(1500);
 
   const [currentMultiplier, setMultiplier] = useState(1);
 
@@ -33,10 +30,17 @@ const Home = () => {
     },
   ]);
 
+  const [activeClicker, setActiveClicker] = useState(currentClickerStorage[0]);
+
   const [currentGoalCount, setCurrentGoalCount] = useState(rewards[0].count);
+
   const [currentRewardDescription, setCurrentRewardDescription] = useState('');
 
   const [showModal, setShowModal] = useState(false);
+
+  const handleActiveClicker = (clicker) => {
+    if (currentClickerStorage.includes(clicker)) setActiveClicker(clicker);
+  };
 
   const handleCloseModal = () => setShowModal(false);
 
@@ -86,6 +90,7 @@ const Home = () => {
         currentCurrency={currentCurrency}
         currentMultiplier={currentMultiplier}
         clickers={currentClickerStorage}
+        handleActiveClicker={handleActiveClicker}
       />
 
       {/* <ClickerStorageContainer clickers={currentClickerStorage} /> */}
@@ -99,7 +104,11 @@ const Home = () => {
         currentClickerStorage={currentClickerStorage}
       />
 
-      <ClickerIcon handleClick={handleClick} />
+      <ClickerIcon
+        handleClick={handleClick}
+        currentClickerStorage={currentClickerStorage}
+        activeClicker={activeClicker}
+      />
 
       <ClickCounter count={count} />
 

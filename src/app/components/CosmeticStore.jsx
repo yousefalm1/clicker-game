@@ -25,7 +25,7 @@ const CosmeticStore = ({
         return (
           <div
             key={cosmeticUpgrade.id}
-            className="ms-5 mt-5 mx-auto flex items-center rounded-3xl text-black px-4"
+            className="mx-6 mt-5 - flex  justify-between w-full rounded-3xl text-black px-4 "
           >
             {Icon ? (
               <Icon className="icon-class w-8 h-8" />

@@ -17,7 +17,7 @@ const UpgradeStore = ({
       {levels.map((level) => (
         <div
           key={level.id}
-          className="ms-5 mt-5 mx-auto flex space-x-28 justify-centeritems-end rounded-3xl text-black px-4"
+          className="mx-6 mt-5 - flex  justify-between w-full rounded-3xl text-black px-4"
         >
           <div className="flex-1 m1-4">
             <p className="text-lg text-zinc-300 font-semibold">{level.name}</p>

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import CurrencyIcon from '../assets/svg/currencyCoin.svg';
 import Bag from '../assets/svg/Bag.svg';
 
-const CurrentBalance = ({ currentCurrency, clickers }) => {
+const CurrentBalance = ({ currentCurrency, clickers, handleActiveClicker }) => {
   const [showModal, setShowModal] = useState(false);
   const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
@@ -50,7 +50,10 @@ const CurrentBalance = ({ currentCurrency, clickers }) => {
                       {clicker.description}
                     </p>
                   </div>
-                  <button class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-8 rounded-3xl">
+                  <button
+                    onClick={() => handleActiveClicker(clicker)}
+                    class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-8 rounded-3xl"
+                  >
                     Equip
                   </button>
                 </div>
