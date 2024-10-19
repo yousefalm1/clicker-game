@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Rewards from './Rewards';
 
 const ViewJourneyModal = ({ count }) => {
-  const [showModal, setShowModal] = useState(false); // Handle modal visibility
+  const [showModal, setShowModal] = useState(false);
 
   const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
