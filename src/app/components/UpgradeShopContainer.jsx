@@ -18,7 +18,7 @@ const UpgradeShopContainer = ({
   const [selectedOption, setSelectedOption] = useState(options[0]);
 
   return (
-    <div className="flex justify-start flex-col mt-[-105px]  w-[577px] h-[664px] rounded-3xl ms-5 py-9 px-3 items-center border-zinc-800/[.4] border-2  bg-zinc-900 ">
+    <div className="flex justify-start flex-col  w-[577px] h-[664px] rounded-3xl ms-5 py-9 px-3 items-center border-zinc-800/[.4] border-2  bg-zinc-900 ">
       <Tabs
         options={options}
         selectedOption={selectedOption}

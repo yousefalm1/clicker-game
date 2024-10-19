@@ -3,6 +3,8 @@
 import { useState } from 'react';
 
 import rewards from './data/rewards';
+// import cosmeticUpgrades from '../data/cosmeticClicker';
+import GoldCoinIcon from './assets/svg/gold-coin.svg';
 
 import UpgradeShopContainer from './components/UpgradeShopContainer';
 import CurrentBalance from './components/CurrentBalance';
@@ -15,10 +17,21 @@ import ProgressBar from './components/ProgressBar';
 
 const Home = () => {
   const [count, setCount] = useState(0);
-  const [currentCurrency, setCurrentCurrency] = useState(0);
+  const [currentCurrency, setCurrentCurrency] = useState(500);
+
+  const [activeClicker, setActiveClicker] = useState();
 
   const [currentMultiplier, setMultiplier] = useState(1);
-  const [currentClickerStorage, setCurrentClickerStorage] = useState([]);
+
+  const [currentClickerStorage, setCurrentClickerStorage] = useState([
+    {
+      id: 'default_clicker',
+      name: 'Gold Coin Clicker',
+      description: 'We all need a bit of luck to start!',
+      cost: 0,
+      IconComponent: GoldCoinIcon,
+    },
+  ]);
 
   const [currentGoalCount, setCurrentGoalCount] = useState(rewards[0].count);
   const [currentRewardDescription, setCurrentRewardDescription] = useState('');
@@ -72,9 +85,10 @@ const Home = () => {
       <NavBarContainer
         currentCurrency={currentCurrency}
         currentMultiplier={currentMultiplier}
+        clickers={currentClickerStorage}
       />
 
-      <ClickerStorageContainer clickers={currentClickerStorage} />
+      {/* <ClickerStorageContainer clickers={currentClickerStorage} /> */}
 
       <UpgradeShopContainer
         setCurrentCurrency={setCurrentCurrency}
