@@ -32,7 +32,7 @@ const UpgradeStore = ({
                 : 'bg-blue-500/[.2] text-white/[.2] cursor-not-allowed'
             }  py-2 px-4 rounded-full w-40 text-center ms-4 font-bold`}
           >
-            ${level.cost}
+            ${level.cost.toLocaleString()}
           </button>
         </div>
       ))}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import CurrencyIcon from '../assets/svg/currencyCoin.svg';
 import Bag from '../assets/svg/Bag.svg';
+import ClickersInBag from './ClickersInBag';
 
 const CurrentBalance = ({ currentCurrency, clickers, handleActiveClicker }) => {
   const [showModal, setShowModal] = useState(false);
@@ -30,35 +31,10 @@ const CurrentBalance = ({ currentCurrency, clickers, handleActiveClicker }) => {
               </button>
             </div>
 
-            {clickers.map((clicker) => {
-              const Icon = clicker.IconComponent;
-              return (
-                <div
-                  key={clicker.id}
-                  className="ms-5 mt-5 mx-auto flex items-center rounded-3xl text-black px-4"
-                >
-                  {Icon ? (
-                    <Icon className="icon-class w-20 h-20" />
-                  ) : (
-                    <div className="w-24 h-24 bg-gray-200" />
-                  )}
-                  <div className="flex-1 ml-4">
-                    <p className="text-xl text-zinc-300 font-semibold">
-                      {clicker.name}
-                    </p>
-                    <p className="text-base text-gray-500">
-                      {clicker.description}
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => handleActiveClicker(clicker)}
-                    class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-8 rounded-3xl"
-                  >
-                    Equip
-                  </button>
-                </div>
-              );
-            })}
+            <ClickersInBag
+              clickers={clickers}
+              handleActiveClicker={handleActiveClicker}
+            />
           </div>
         </div>
       )}

@@ -8,16 +8,22 @@ export const Rewards = ({ count }) => {
           key={reward.name}
           className={`${
             count >= reward.count ? 'bg-gray-500' : 'bg-gray-700'
-          } p-4 rounded-md shadow-md '}`}
+          } p-4 rounded-2xl shadow-2xl '}`}
         >
           <h1 className="text-lg font-bold text-slate-200 ">{reward.name}</h1>
           <p className="text-base font-medium text-slate-400 ">
             Goal Count:
-            <span className="text-slate-300"> {reward.count}</span>
+            <span className="text-slate-300">
+              {' '}
+              {reward.count.toLocaleString()}
+            </span>
           </p>
           <p className="text-base font-medium text-slate-400">
             Reward:
-            <span className="text-slate-300"> {reward.reward}</span>{' '}
+            <span className="text-slate-300">
+              {' '}
+              ${reward.reward.toLocaleString()}
+            </span>
           </p>
         </div>
       ))}

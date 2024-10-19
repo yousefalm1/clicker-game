@@ -1,4 +1,9 @@
+import useWindowSize from 'react-use/lib/useWindowSize';
+import Confetti from 'react-confetti';
+
 const Modal = ({ showModal, currentRewardDescription, handleCloseModal }) => {
+  const { width, height } = useWindowSize();
+
   return (
     <>
       {showModal && (
@@ -8,8 +13,17 @@ const Modal = ({ showModal, currentRewardDescription, handleCloseModal }) => {
           role="dialog"
           aria-modal="true"
         >
-          <div className="fixed inset-0 bg-gray-800 bg-opacity-75 transition-opacity"></div>
+          <Confetti
+            width={width}
+            height={height}
+            numberOfPieces={300}
+            confettiSource={{ x: 0, y: height, w: width, h: 0 }}
+            initialVelocityY={30}
+            gravity={0.2}
+            recycle={false}
+          />
 
+          <div className="fixed inset-0 bg-gray-800 bg-opacity-75 transition-opacity"></div>
           <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto">
             <div className="relative transform overflow-hidden rounded-lg  bg-zinc-900 text-left shadow-2xl transition-all sm:w-full sm:max-w-md">
               <div className=" bg-zinc-900 px-6 py-4 sm:py-6">
@@ -35,7 +49,7 @@ const Modal = ({ showModal, currentRewardDescription, handleCloseModal }) => {
                       className="text-2xl font-bold leading-6 text-zinc-300 "
                       id="modal-title"
                     >
-                      Level Unlocked!
+                      Congratulations!
                     </h3>
                     <div className="mt-5">
                       <p className="text-lg text-zinc-300 ">
