@@ -1,4 +1,4 @@
-import MyIcon from '../assets/card.svg';
+import MyIcon from '../assets/svg/currencyCoin.svg';
 
 const CurrentBalance = ({ currentCurrency }) => {
   return (
