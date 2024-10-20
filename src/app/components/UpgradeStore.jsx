@@ -8,7 +8,7 @@ const UpgradeStore = ({
   const handleBuyUpgradeClick = (level) => {
     if (currentCurrency >= level.cost) {
       setCurrentCurrency(currentCurrency - level.cost);
-      setMultiplier((c) => c * level.multiplier);
+      setMultiplier((c) => c + level.multiplier);
     }
   };
 

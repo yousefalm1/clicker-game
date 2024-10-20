@@ -57,7 +57,7 @@ const CosmeticStore = ({
             >
               {alreadyInStorage
                 ? 'Owned'
-                : `${cosmeticUpgrade.cost.toLocaleString()}`}
+                : `$${cosmeticUpgrade.cost.toLocaleString()}`}
             </button>
           </div>
         );
