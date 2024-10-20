@@ -9,7 +9,7 @@ const ViewJourneyModal = ({ count }) => {
   const handleCloseModal = () => setShowModal(false);
 
   return (
-    <div className="flex justify-center items-center ">
+    <div className="flex justify-center items-center">
       <div className="flex space-x-64">
         <button
           onClick={handleOpenModal}

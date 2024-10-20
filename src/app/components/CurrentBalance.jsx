@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import CurrencyIcon from '../assets/svg/currencyCoin.svg';
 import Bag from '../assets/svg/Bag.svg';
+
 import ClickersInBag from './ClickersInBag';
 
 const CurrentBalance = ({ currentCurrency, clickers, handleActiveClicker }) => {
@@ -41,7 +42,9 @@ const CurrentBalance = ({ currentCurrency, clickers, handleActiveClicker }) => {
 
       <CurrencyIcon />
 
-      <h2 className="text-5xl font-bold text-slate-300">{currentCurrency}</h2>
+      <h2 className="text-5xl font-bold text-slate-300">
+        {currentCurrency.toLocaleString()}
+      </h2>
     </div>
   );
 };

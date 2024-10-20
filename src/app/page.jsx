@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import rewards from './data/rewards';
+
 import GoldCoinIcon from './assets/svg/gold-coin.svg';
 
 import UpgradeShopContainer from './components/UpgradeShopContainer';
@@ -32,6 +33,7 @@ const Home = () => {
   ]);
 
   // WOULD LIKE TO CREDIT @mshll for help with active Clicker , the confetti and the product store alignment
+
   const [activeClicker, setActiveClicker] = useState(currentClickerStorage[0]);
 
   const [currentGoalCount, setCurrentGoalCount] = useState(rewards[0].count);
